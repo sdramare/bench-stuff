@@ -5,26 +5,15 @@ using BenchmarkDotNet.Attributes;
 
 namespace BenchStash
 {
+    [MemoryDiagnoser()]
     public class TestCase
     {
         private static readonly Random Random = new(420);
+
         private readonly List<int> _array = Enumerable
             .Range(0, 1000000)
             .Select(_ => Random.Next(500000))
             .ToList();
-
-        [Benchmark]
-        public long SumFor()
-        {
-            var result = 0L;
-
-            for (int i = 0; i < _array.Count; i++)
-            {
-                result += _array[i];
-            }
-
-            return result;
-        }
 
         [Benchmark]
         public long SumForeach()
@@ -40,9 +29,28 @@ namespace BenchStash
         }
 
         [Benchmark]
+        public long SumFor()
+        {
+            var result = 0L;
+
+            for (int i = 0; i < _array.Count; i++)
+            {
+                result += _array[i];
+            }
+
+            return result;
+        }
+
+        [Benchmark]
         public long SumLinq()
         {
-            return _array.Sum(x=>(long)x);
+            return _array.Sum(x => (long)x);
+        }
+
+        [Benchmark]
+        public long SumAcc()
+        {
+            return _array.Aggregate(0L, (acc, x) => acc + x);
         }
     }
 }
