@@ -1,4 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
-using ConsoleApp1;
+using BenchStash;
 
 BenchmarkRunner.Run<TestCase>();
