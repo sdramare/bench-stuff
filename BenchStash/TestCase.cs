@@ -8,11 +8,12 @@ namespace BenchStash
     [MemoryDiagnoser()]
     public class TestCase
     {
+        private const int DataCount = 1000000;
         private static readonly Random Random = new(420);
 
         private readonly List<int> _array = Enumerable
-            .Range(0, 1000000)
-            .Select(_ => Random.Next(500000))
+            .Range(0, DataCount)
+            .Select(_ => Random.Next(DataCount))
             .ToList();
 
         [Benchmark]
