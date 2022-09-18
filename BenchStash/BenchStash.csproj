@@ -2,11 +2,17 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
+        <LangVersion>10</LangVersion>
+        <Nullable>warnings</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
+      <PackageReference Include="LazyCache" Version="2.4.0" />
+      <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.0" />
+      <PackageReference Include="ShellProgressBar" Version="5.2.0" />
     </ItemGroup>
 
 </Project>
